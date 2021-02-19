@@ -12,9 +12,9 @@ namespace CIKuppgift3
         public int Turn { get; set; }
         public bool IsCorrect { get; set; }
 
-        public GameOfDice(int sides = 6)
+        public GameOfDice()
         {
-            Sides = sides;
+            Sides = LetUserDefineDiceSides();
             Result = Roll;
             IsCorrect = true;
             Turn = 1;
@@ -81,6 +81,25 @@ namespace CIKuppgift3
             {
                 Console.WriteLine("Hey! That's not a number");
             }
+        }
+        private static int LetUserDefineDiceSides()
+        {
+            Console.WriteLine("How many sides should the dice have?");
+            var userInput = Console.ReadLine();
+            int sides = 6;
+            try
+            {
+                sides = int.Parse(userInput);
+                if (sides <= 0)
+                {
+                    throw new FormatException();
+                }
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine("Input must be a positive integer! Default value will be used.");
+            }
+            return sides;
         }
     }
 }

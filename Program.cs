@@ -9,7 +9,7 @@ namespace CIKuppgift3
             Console.WriteLine("Let's play guess the dice");
             do
             {
-                var game = new GameOfDice(LetUserDefineDiceSides());
+                var game = new GameOfDice();
                 game.Start();
                 game.PresentResults();
             }
@@ -41,26 +41,6 @@ namespace CIKuppgift3
                     break;
             }
             return result;
-        }
-
-        private static int LetUserDefineDiceSides()
-        {
-            Console.WriteLine("How many sides should the dice have?");
-            var userInput = Console.ReadLine();
-            int sides = 6;
-            try
-            {
-                sides = int.Parse(userInput);
-                if (sides <= 0)
-                {
-                    throw new FormatException();
-                }
-            }
-            catch (FormatException ex)
-            {
-                Console.WriteLine("Input must be a positive integer! Default value of six sides will be used.");
-            }
-            return sides;
         }
     }
 }
