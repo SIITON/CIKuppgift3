@@ -14,7 +14,7 @@ namespace CIKuppgift3.Tests
             Assert.AreEqual(_default, dice._sides);
         }
         [TestMethod]
-        public void Roll_Within_Its_Default_Limits()
+        public void Roll_Within_Default_Limits()
         {
             var dice = new Dice();
             for(int i = 0; i < _numberOfRollsPerDiceTest; i++)
@@ -26,7 +26,7 @@ namespace CIKuppgift3.Tests
         [DataRow(10)]
         [DataRow(50)]
         [DataRow(100)]
-        public void Roll_Within_Its_Defined_Limits(int sides)
+        public void Roll_Within_Defined_Limits(int sides)
         {
             var dice = new Dice(sides);
             for (int i = 0; i < _numberOfRollsPerDiceTest; i++)

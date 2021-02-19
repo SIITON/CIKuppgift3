@@ -7,12 +7,40 @@ namespace CIKuppgift3
         static void Main(string[] args)
         {
             Console.WriteLine("Let's play guess the dice");
-            IDice dice = new GameOfDice(LetUserDefineDiceSides());
-            Console.WriteLine(dice.Result);
-            dice.RollNext();
-            Console.WriteLine(dice.Result);
+            do
+            {
+                var game = new GameOfDice(LetUserDefineDiceSides());
+                game.Start();
+                game.PresentResults();
+            }
+            while (UserWantsToPlay()); 
+        }
 
-
+        private static bool UserWantsToPlay()
+        {
+            Console.WriteLine("Play again? (Y/n)");
+            var userInput = Console.ReadLine();
+            var result = false;
+            switch (userInput)
+            {
+                case "Y":
+                    result = true;
+                    break;
+                case "y":
+                    result = true;
+                    break;
+                case "N":
+                    result = false;
+                    break;
+                case "n":
+                    result = false;
+                    break;
+                default:
+                    Console.WriteLine("?? Whatever, shutting down");
+                    result = false;
+                    break;
+            }
+            return result;
         }
 
         private static int LetUserDefineDiceSides()
