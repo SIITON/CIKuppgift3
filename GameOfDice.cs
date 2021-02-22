@@ -26,7 +26,6 @@ namespace CIKuppgift3
         }
         public void Start()
         {
-            Console.WriteLine($"Dice has {Sides} possibilities/sides");
             Console.WriteLine("Guess the roll!");
             while (IsCorrect)
             {
@@ -99,7 +98,37 @@ namespace CIKuppgift3
             {
                 Console.WriteLine("Input must be a positive integer! Default value will be used.");
             }
+            finally
+            {
+                Console.WriteLine($"Dice has {sides} possibilities/sides");
+            }
             return sides;
+        }
+        public static bool UserWantsToPlay()
+        {
+            Console.WriteLine("Play again? (Y/n)");
+            var userInput = Console.ReadLine();
+            var result = false;
+            switch (userInput)
+            {
+                case "Y":
+                    result = true;
+                    break;
+                case "y":
+                    result = true;
+                    break;
+                case "N":
+                    result = false;
+                    break;
+                case "n":
+                    result = false;
+                    break;
+                default:
+                    Console.WriteLine("?? Whatever, shutting down");
+                    result = false;
+                    break;
+            }
+            return result;
         }
     }
 }
