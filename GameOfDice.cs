@@ -15,7 +15,6 @@ namespace CIKuppgift3
         public GameOfDice()
         {
             Sides = LetUserDefineDiceSides();
-            Console.WriteLine(Sides);
             Result = Roll;
             IsCorrect = true;
             Turn = 1;
@@ -69,15 +68,15 @@ namespace CIKuppgift3
             {
                 Guess = int.Parse(Console.ReadLine());
             }
-            catch (OverflowException ex)
+            catch (OverflowException)
             {
                 Console.WriteLine("That number is way too high...");
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
                 Console.WriteLine("You gotta guess something!");
             }
-            catch (FormatException ex)
+            catch (FormatException)
             {
                 Console.WriteLine("Hey! That's not a number");
             }
@@ -95,7 +94,7 @@ namespace CIKuppgift3
                     throw new FormatException();
                 }
             }
-            catch (FormatException ex)
+            catch (FormatException)
             {
                 Console.WriteLine("Input must be a positive integer! Default value will be used.");
             }
