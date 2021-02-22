@@ -7,7 +7,6 @@ namespace CIKuppgift3
         static void Main(string[] args)
         {
             Console.WriteLine("Let's play guess the dice");
-
             do
             {
                 var game = new GameOfDice();

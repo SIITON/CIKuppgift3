@@ -15,6 +15,7 @@ namespace CIKuppgift3
         public GameOfDice()
         {
             Sides = LetUserDefineDiceSides();
+            Console.WriteLine(Sides);
             Result = Roll;
             IsCorrect = true;
             Turn = 1;
