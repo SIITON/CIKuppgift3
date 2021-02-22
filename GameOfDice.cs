@@ -12,13 +12,15 @@ namespace CIKuppgift3
         public int Turn { get; set; }
         public bool IsCorrect { get; set; }
 
+
+
         public GameOfDice()
         {
             Sides = LetUserDefineDiceSides();
             Result = Roll;
             IsCorrect = true;
             Turn = 1;
-        }
+    }
         public void RollNext()
         {
             Result = Roll;
@@ -26,10 +28,13 @@ namespace CIKuppgift3
         }
         public void Start()
         {
+            var ui = new DiceGUI();
             Console.WriteLine("Guess the roll!");
             while (IsCorrect)
             {
                 GetUserInput();
+                ui.PrintRandomRolls(Sides);
+                ui.PrintNumber(Result);
                 CheckInputAgainstResult();
                 RollNext();
             }
@@ -39,7 +44,7 @@ namespace CIKuppgift3
         {
             if (!(Guess == Result))
             {
-                Console.WriteLine($"\t Wrong! Dice show {Result}");
+                Console.WriteLine($"#{Turn}:{Guess}\t Wrong! Dice show {Result}");
                 IsCorrect = false;
             }
             else
