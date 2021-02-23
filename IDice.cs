@@ -8,8 +8,8 @@ namespace CIKuppgift3
     {
         // Properties of a dice
         int Sides { get; set; }
-        int Result { get; set; }
-        int Roll { get; }
+        IEnumerable<int> Result { get; set; }
+        IEnumerable<int> Roll { get; }
         void RollNext();
     }
 }

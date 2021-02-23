@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CIKuppgift3
 {
@@ -9,10 +11,11 @@ namespace CIKuppgift3
         {
             _sides = sides;
         }
-
-        public int Roll()
+        public IEnumerable<int> Roll()
         {
-            return new Random().Next(1, _sides + 1);
+            var num = new Random().Next(1, _sides + 1)
+                                  .ToString();
+            return num.Select(x => int.Parse(x.ToString()));
         }
     }
 }
