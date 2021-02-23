@@ -37,7 +37,7 @@ namespace CIKuppgift3.Tests
             var sum = 0.0;
             for (int i = 0; i < _numberOfRollsPerDiceTest; i++)
             {
-                var num = dice.Roll().Sum();
+                var num = Int32.Parse(string.Join("", Enumerable.ToArray(dice.Roll())));
                 Assert.IsTrue(num <= sides);
                 Assert.IsTrue(num >= 1);
                 sum += num;
