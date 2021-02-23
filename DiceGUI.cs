@@ -8,11 +8,6 @@ namespace CIKuppgift3
 {
     public class DiceGUI
     {
-        //private List<string>[] _row = new List<string>[] { new List<string>(),
-        //                                                   new List<string>(),
-        //                                                   new List<string>(),
-        //                                                   new List<string>(),
-        //                                                   new List<string>()};
         private string[] _row = new string[5];
 
     public DiceGUI()
@@ -75,10 +70,8 @@ namespace CIKuppgift3
             }
             for (var i = 0; i < 5; i++)
             {
-           
                 var rowtoprint = string.Concat(_row[i]);
                 Console.WriteLine(rowtoprint);
-                
             }
         }
         public void Clear()
@@ -160,7 +153,7 @@ namespace CIKuppgift3
             _row[1] += "##  ## ";
             _row[2] += "###### ";
             _row[3] += "    ## ";
-            _row[4] += "  #### ";
+            _row[4] += "###### ";
         }
         private void Print0()
         {
