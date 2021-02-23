@@ -21,7 +21,7 @@ namespace CIKuppgift3.Tests
             var dice = new Dice();
             for(int i = 0; i < _numberOfRollsPerDiceTest; i++)
             {
-                Assert.IsTrue(dice.Roll() <= _default);
+                Assert.IsTrue(dice.Roll().Sum() <= _default);
             }
         }
         [DataTestMethod]
@@ -37,7 +37,7 @@ namespace CIKuppgift3.Tests
             var sum = 0.0;
             for (int i = 0; i < _numberOfRollsPerDiceTest; i++)
             {
-                var num = dice.Roll();
+                var num = dice.Roll().Sum();
                 Assert.IsTrue(num <= sides);
                 Assert.IsTrue(num >= 1);
                 sum += num;

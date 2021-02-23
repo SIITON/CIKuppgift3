@@ -8,8 +8,19 @@ namespace CIKuppgift3
 {
     public class DiceGUI
     {
-        public DiceGUI()
+        //private List<string>[] _row = new List<string>[] { new List<string>(),
+        //                                                   new List<string>(),
+        //                                                   new List<string>(),
+        //                                                   new List<string>(),
+        //                                                   new List<string>()};
+        private string[] _row = new string[5];
+
+    public DiceGUI()
         {
+            for (var i = 0; i < 5; i++)
+            {
+                _row[i] = " ";
+            }
         }
 
         public void PrintRandomRolls(int sides)
@@ -19,131 +30,145 @@ namespace CIKuppgift3
             {
                 var num = new Dice(sides).Roll();
                 PrintNumber(num);
-                Thread.Sleep(500);
+                Thread.Sleep(600 - 100*i);
                 Clear();
             }
         }
 
-        public void PrintNumber(int number)
+        public void PrintNumber(IEnumerable<int> number)
         {
-            switch (number)
+            foreach (var num in number)
             {
-                case 1:
-                    Print1();
-                    break;
-                case 2:
-                    Print2();
-                    break;
-                case 3:
-                    Print3();
-                    break;
-                case 4:
-                    Print4();
-                    break;
-                case 5:
-                    Print5();
-                    break;
-                case 6:
-                    Print6();
-                    break;
-                case 7:
-                    Print7();
-                    break;
-                case 8:
-                    Print8();
-                    break;
-                case 9:
-                    Print9();
-                    break;
-                case 0:
-                    Print0();
-                    break;
+                switch (num)
+                {
+                    case 1:
+                        Print1();
+                        break;
+                    case 2:
+                        Print2();
+                        break;
+                    case 3:
+                        Print3();
+                        break;
+                    case 4:
+                        Print4();
+                        break;
+                    case 5:
+                        Print5();
+                        break;
+                    case 6:
+                        Print6();
+                        break;
+                    case 7:
+                        Print7();
+                        break;
+                    case 8:
+                        Print8();
+                        break;
+                    case 9:
+                        Print9();
+                        break;
+                    case 0:
+                        Print0();
+                        break;
+                }
+            }
+            for (var i = 0; i < 5; i++)
+            {
+           
+                var rowtoprint = string.Concat(_row[i]);
+                Console.WriteLine(rowtoprint);
+                
             }
         }
-        public static void Clear()
+        public void Clear()
         {
             Console.Clear();
+            for (var i = 0; i < 5; i++)
+            {
+                _row[i] = " ";
+            }
         }
 
-        private static void Print1()
+        private void Print1()
         {
-            Console.WriteLine("    ##");
-            Console.WriteLine("    ##");
-            Console.WriteLine("    ##");
-            Console.WriteLine("    ##");
-            Console.WriteLine("    ##");
+            _row[0] += "    ## ";
+            _row[1] += "    ## ";
+            _row[2] += "    ## ";
+            _row[3] += "    ## ";
+            _row[4] += "    ## ";
         }
-        private static void Print2()
+        private void Print2()
         {
-            Console.WriteLine("######");
-            Console.WriteLine("    ##");
-            Console.WriteLine("######");
-            Console.WriteLine("##    ");
-            Console.WriteLine("######");
+            _row[0] += "###### ";
+            _row[1] += "    ## ";
+            _row[2] += "###### ";
+            _row[3] += "##     ";
+            _row[4] += "###### ";
         }
-        private static void Print3()
+        private void Print3()
         {
-            Console.WriteLine("######");
-            Console.WriteLine("    ##");
-            Console.WriteLine("######");
-            Console.WriteLine("    ##");
-            Console.WriteLine("######");
+            _row[0] += "###### ";
+            _row[1] += "    ## ";
+            _row[2] += "###### ";
+            _row[3] += "    ## ";
+            _row[4] += "###### ";
         }
-        private static void Print4()
+        private void Print4()
         {
-            Console.WriteLine("##  ##");
-            Console.WriteLine("##  ##");
-            Console.WriteLine("######");
-            Console.WriteLine("    ##");
-            Console.WriteLine("    ##");
+            _row[0] += "##  ## ";
+            _row[1] += "##  ## ";
+            _row[2] += "###### ";
+            _row[3] += "    ## ";
+            _row[4] += "    ## ";
         }
-        private static void Print5()
+        private void Print5()
         {
-            Console.WriteLine("######");
-            Console.WriteLine("##    ");
-            Console.WriteLine("######");
-            Console.WriteLine("    ##");
-            Console.WriteLine("######");
+            _row[0] += "###### ";
+            _row[1] += "##     ";
+            _row[2] += "###### ";
+            _row[3] += "    ## ";
+            _row[4] += "###### ";
         }
-        private static void Print6()
+        private void Print6()
         {
-            Console.WriteLine("######");
-            Console.WriteLine("##    ");
-            Console.WriteLine("######");
-            Console.WriteLine("##  ##");
-            Console.WriteLine("######");
+            _row[0] += "###### ";
+            _row[1] += "##     ";
+            _row[2] += "###### ";
+            _row[3] += "##  ## ";
+            _row[4] += "###### ";
         }
-        private static void Print7()
+        private void Print7()
         {
-            Console.WriteLine("######");
-            Console.WriteLine("    ##");
-            Console.WriteLine("    ##");
-            Console.WriteLine("    ##");
-            Console.WriteLine("    ##");
+            _row[0] += "###### ";
+            _row[1] += "    ## ";
+            _row[2] += "    ## ";
+            _row[3] += "    ## ";
+            _row[4] += "    ## ";
         }
-        private static void Print8()
+        private void Print8()
         {
-            Console.WriteLine("######");
-            Console.WriteLine("##  ##");
-            Console.WriteLine("######");
-            Console.WriteLine("##  ##");
-            Console.WriteLine("######");
+            _row[0] += "###### ";
+            _row[1] += "##  ## ";
+            _row[2] += "###### ";
+            _row[3] += "##  ## ";
+            _row[4] += "###### ";
         }
-        private static void Print9()
+        private void Print9()
         {
-            Console.WriteLine("######");
-            Console.WriteLine("##  ##");
-            Console.WriteLine("######");
-            Console.WriteLine("    ##");
-            Console.WriteLine("    ##");
+            _row[0] += "###### ";
+            _row[1] += "##  ## ";
+            _row[2] += "###### ";
+            _row[3] += "    ## ";
+            _row[4] += "  #### ";
         }
-        private static void Print0()
+        private void Print0()
         {
-            Console.WriteLine("######");
-            Console.WriteLine("##  ##");
-            Console.WriteLine("##  ##");
-            Console.WriteLine("##  ##");
-            Console.WriteLine("######");
+            _row[0] += "###### ";
+            _row[1] += "##  ## ";
+            _row[2] += "##  ## ";
+            _row[3] += "##  ## ";
+            _row[4] += "###### ";
         }
     }
 }

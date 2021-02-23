@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using CIKuppgift3.Extensions;
+
 namespace CIKuppgift3
 {
     public class GameOfDice : IDice, IGuessingGame
     {
-        public int Roll => new Dice(Sides).Roll();
-        public int Result { get; set; }
+        public IEnumerable<int> Roll => new Dice(Sides).Roll();
+        public IEnumerable<int> Result { get; set; }
         public int Sides { get; set; }
-        public int Guess { get; set; }
+        public IEnumerable<int> Guess { get; set; }
         public int TotalPoints { get; set; }
         public int Turn { get; set; }
         public bool IsCorrect { get; set; }
@@ -42,23 +45,33 @@ namespace CIKuppgift3
 
         private void CheckInputAgainstResult()
         {
-            if (!(Guess == Result))
+            int result; int guess;
+            if (Int32.TryParse(string.Join("", Enumerable.ToArray(Result)), out result) && Int32.TryParse(string.Join("", Enumerable.ToArray(Guess)), out guess))
             {
-                Console.WriteLine($"#{Turn}:{Guess}\t Wrong! Dice show {Result}");
-                IsCorrect = false;
-            }
-            else
-            {
-                if (!Turn.IsDivisibleBy3())
+                if (!(Guess.SequenceEqual(Result)))
                 {
-                    TotalPoints++;
+                    Console.WriteLine($"#{Turn}: {guess}\t Wrong! Dice show {result}"); //Enumerable.ToArray(Result)
+                    IsCorrect = false;
                 }
                 else
                 {
-                    TotalPoints += 3;
+                    if (!Turn.IsDivisibleBy3())
+                    {
+                        TotalPoints++;
+                    }
+                    else
+                    {
+                        TotalPoints += 3;
+                    }
+                    Console.WriteLine($"\t Correct! {TotalPoints} points");
                 }
-                Console.WriteLine($"\t Correct! {TotalPoints} points");
             }
+            else
+            {
+                Console.WriteLine("Game broke, sry");
+            }
+            
+            
         }
 
         public void PresentResults()
@@ -71,7 +84,8 @@ namespace CIKuppgift3
             Console.Write($"#{Turn} : ");
             try
             {
-                Guess = int.Parse(Console.ReadLine());
+                var input = Console.ReadLine();
+                Guess = input.Select(x => int.Parse(x.ToString()));
             }
             catch (OverflowException)
             {
