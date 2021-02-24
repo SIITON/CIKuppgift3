@@ -10,7 +10,7 @@ namespace CIKuppgift3
     {
         private string[] _row = new string[5];
 
-    public DiceGUI()
+        public DiceGUI()
         {
             for (var i = 0; i < 5; i++)
             {
@@ -23,16 +23,17 @@ namespace CIKuppgift3
             Clear();
             for (int i = 0; i < 5; i++)
             {
-                var num = new Dice(sides).Roll();
+                var num = new Random().Next(1, sides + 1);
                 PrintNumber(num);
-                Thread.Sleep(600 - 100*i);
+                Thread.Sleep(600 - 100 * i);
                 Clear();
             }
         }
 
-        public void PrintNumber(IEnumerable<int> number)
+        public void PrintNumber(int number)
         {
-            foreach (var num in number)
+            var enumerablenumber = number.ToString().Select(x => int.Parse(x.ToString()));
+            foreach (var num in enumerablenumber)
             {
                 switch (num)
                 {
