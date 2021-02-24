@@ -9,7 +9,7 @@ namespace CIKuppgift3
             Console.WriteLine("Let's play guess the dice");
             do
             {
-                var game = new GameOfDice();
+                var game = new GameOfDice("user-defined");
                 game.Start();
                 game.PresentResults();
             }
