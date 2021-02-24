@@ -10,23 +10,31 @@ namespace CIKuppgift3
         public int LastRoll { get; private set; }
         public int NewRoll { get; private set; }
         public int Sides { get; set; }
-        public bool IsCorrect { get; private set; }
+        public bool UserIsCorrect { get; private set; }
         public int Turn { get; private set; }
         public bool UserGuessHigher { get; set; }
         public int TotalPoints { get; private set; }
 
-        public GameOfDice()
+        public GameOfDice(string args)
         {
-            Sides = LetUserDefineDiceSides();
+            switch (args)
+            {
+                case "user-defined":
+                    Sides = LetUserDefineDiceSides();
+                    break;
+                default:
+                    Sides = _defaultSides;
+                    break;
+            }
             RollDice();
             Turn = 0;
-            IsCorrect = true;
+            UserIsCorrect = true;
         }
 
         public void Start()
         {
             var ui = new DiceGUI();
-            while (IsCorrect)
+            while (UserIsCorrect)
             {
                 RollDice();
                 Console.WriteLine($"Dice show {LastRoll}");
@@ -42,20 +50,25 @@ namespace CIKuppgift3
         {
             if (UserGuessHigher == (NewRoll >= LastRoll))
             {
-                if (!Turn.IsDivisibleBy3())
-                {
-                    TotalPoints++;
-                }
-                else
-                {
-                    TotalPoints += 3;
-                }
+                AddPoints();
                 Console.WriteLine($"#{Turn}:\t Correct! You have {TotalPoints} points");
             }
             else
             {
                 Console.WriteLine($"#{Turn}:\t Wrong! Dice show {NewRoll}, previous roll was {LastRoll}");
-                IsCorrect = false;
+                UserIsCorrect = false;
+            }
+        }
+
+        public void AddPoints()
+        {
+            if (!Turn.IsDivisibleBy3())
+            {
+                TotalPoints++;
+            }
+            else
+            {
+                TotalPoints += 3;
             }
         }
 
