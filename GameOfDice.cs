@@ -7,8 +7,10 @@ namespace CIKuppgift3
     public class GameOfDice
     {
         private int _defaultSides = 6;
-        public int LastRoll { get; private set; }
-        public int NewRoll { get; private set; }
+        private int _defaultExtraPoints = 3;
+        public int Extrapoints { get; set; }
+        public int LastRoll { get; set; }
+        public int NewRoll { get; set; }
         public int Sides { get; set; }
         public bool UserIsCorrect { get; private set; }
         public int Turn { get; private set; }
@@ -28,6 +30,7 @@ namespace CIKuppgift3
             }
             RollDice();
             Turn = 0;
+            Extrapoints = _defaultExtraPoints;
             UserIsCorrect = true;
         }
 
@@ -46,12 +49,13 @@ namespace CIKuppgift3
             }
         }
 
-        private void CheckGuessAgainstNewRoll()
+        public void CheckGuessAgainstNewRoll()
         {
-            if (UserGuessHigher == (NewRoll >= LastRoll))
+            if (UserGuessHigher == (NewRoll > LastRoll) && NewRoll != LastRoll)
             {
                 AddPoints();
                 Console.WriteLine($"#{Turn}:\t Correct! You have {TotalPoints} points");
+                UserIsCorrect = true;
             }
             else
             {
@@ -68,7 +72,7 @@ namespace CIKuppgift3
             }
             else
             {
-                TotalPoints += 3;
+                TotalPoints += Extrapoints;
             }
         }
 
