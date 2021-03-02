@@ -32,7 +32,8 @@ namespace CIKuppgift3
 
         public void PrintNumber(int number)
         {
-            var enumerablenumber = number.ToString().Select(x => int.Parse(x.ToString()));
+            IEnumerable<int> enumerablenumber = number.ToString()
+                                                      .Select(x => int.Parse(x.ToString()));
             foreach (var num in enumerablenumber)
             {
                 switch (num)
